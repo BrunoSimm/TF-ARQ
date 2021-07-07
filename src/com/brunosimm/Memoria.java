@@ -43,7 +43,7 @@ public class Memoria {
         }
     }
 
-    public String[] getBlocoByEndereco(String endereco){
+    public String[] getBloco8ByEndereco(String endereco){
         String[] bloco = new String[8];
         int posicao = -1;
 
@@ -73,5 +73,39 @@ public class Memoria {
 
     public List<String> getDadosBin() {
         return dadosBin;
+    }
+
+    public String[] getBloco4ByEndereco(String endereco) {
+        String[] bloco = new String[4];
+        int posicao = -1;
+
+        for (int i = 0; i < dadosBin.size(); i++) {
+            if (dadosBin.get(i).equals(endereco)){
+                posicao = i;
+                break;
+            }
+        }
+        if (posicao == -1) {
+            System.out.println("NÃO ENCONTREI A POSIÇÃO => "+ endereco);
+            return bloco;
+        } //vazio
+
+            int count = 0;
+            bloco[0] = dadosBin.get(posicao);
+            if (posicao <= 193){
+                for (int i = 1; i <= 3 ; i++) {
+                    bloco[i] = dadosBin.get(posicao + (1+count));
+                    count++;
+                }
+            } else { // >193
+                for (int i = 3; i > 0; i--) {
+                    bloco[i] = dadosBin.get(posicao - (1+count));
+                    count++;
+                }
+            }
+
+
+        //TODO -> Validar posições < 3 e maiores que 195
+        return bloco;
     }
 }

@@ -31,15 +31,21 @@ public class Main {
         CacheL4P2 cacheL4P2 = new CacheL4P2(4,2,9,memoria); // TODO -> REFATORAR PARA 4 LINHAS E 2 PALAVRAS
 
         List<String> memo = memoria.getDadosBin();
+
+        //cacheL4P2.search("0000000001101000");
+        //memoria.getBloco4ByEndereco("0000000001101000");
         memo.forEach(m -> {
             cacheL3P3.search(m);
             cacheL4P2.search(m);
         });
 
-        //cacheL3P3.search("0000000000000000");
         //cacheL3P3.show();
-
         cacheL4P2.show();
+
+
+        System.out.println("\n"+ cacheL4P2.getHits());
+        System.out.println(cacheL4P2.getMiss());
+
         System.out.println("\n"+ cacheL3P3.getHits());
         System.out.println(cacheL3P3.getMiss());
         System.out.println("percent 1 => "+ cacheL3P3.getPercentualAcertos());

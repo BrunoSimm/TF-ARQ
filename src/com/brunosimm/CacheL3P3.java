@@ -79,7 +79,7 @@ public class CacheL3P3 {
 
             if ((linhacache.equals(linha))){
                 memoriaCache[i][1] = tag;
-                String[] bloco = memoria.getBlocoByEndereco(endereco);
+                String[] bloco = memoria.getBloco8ByEndereco(endereco);
                 for (int j = 2; j <= memoriaCache.length+1; j++) {
                     memoriaCache[i][j] = bloco[j-2]; // existem posições onde o dado pode ir?? => precisa pegar o lote da memoria (4)
                 }
