@@ -41,7 +41,7 @@ public class CacheL3P3 {
     }
 
     public void show(){
-        System.out.print(" Linha     Tag       ...Dados");
+        System.out.print("\n Linha     Tag       ...Dados");
         for (String[] linhas: memoriaCache) { //retorna um vetor por interação (linha)
             System.out.println("\n");
             for (String coluna : linhas) {
@@ -62,12 +62,14 @@ public class CacheL3P3 {
 
             if ((memoriaCache[i][2] != null) && tagcache != null && (linhacache.equals(linha)) && (tagcache.equals(tag))){ //hit
                 this.hits++;
+                System.out.println("\nL3P3 - Endereço: "+endereco+ " -> HIT");
                 return true;
             }
 
         }
         //miss -> não encontrou na cache no for anterior. Setar novos dados e tag
         this.miss++;
+        System.out.println("\nL3P3 - Endereço: "+endereco+ " -> MISS");
         for (int i = 0; i < memoriaCache.length; i++) { //000000000 100 111 0
 
             String linhacache = memoriaCache[i][0].substring(6);
@@ -80,6 +82,11 @@ public class CacheL3P3 {
             if ((linhacache.equals(linha))){
                 memoriaCache[i][1] = tag;
                 String[] bloco = memoria.getBloco8ByEndereco(endereco);
+
+                if (bloco[0] == null) {
+                    System.out.println("\nENDERECO COM PROBLEMA!!! => "+endereco);
+                    System.out.println("\nENDERECO COM PROBLEMA!!! => "+endereco);
+                }
                 for (int j = 2; j <= memoriaCache.length+1; j++) {
                     memoriaCache[i][j] = bloco[j-2]; // existem posições onde o dado pode ir?? => precisa pegar o lote da memoria (4)
                 }

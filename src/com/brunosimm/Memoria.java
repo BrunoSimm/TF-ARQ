@@ -2,9 +2,6 @@ package com.brunosimm;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Memoria {
     private List<String> dadosBin;
@@ -55,8 +52,8 @@ public class Memoria {
             }
             if (posicao == -1) { return bloco; } //vazio
 
+            int count = 0;
             if (posicao > 3 && posicao < 193){
-                int count = 0;
                 for (int i = 3; i >= 0; i--) {
                     bloco[i] = dadosBin.get(posicao - (1+count));
                     count++;
@@ -66,8 +63,25 @@ public class Memoria {
                     bloco[i] = dadosBin.get(posicao + (1+count));
                     count++;
                 }
+            } else if (posicao < 3) {
+                count = 0;
+                if (posicao == 0){
+                    for (int i = 0; i < 8 ; i++) {
+                        bloco[i] = dadosBin.get(i);
+                    }
+                } else if (posicao == 1){
+                    bloco[0] = dadosBin.get(0);
+                    for (int i = 1; i < 8 ; i++) {
+                        bloco[i] = dadosBin.get(i);
+                    }
+                } else if (posicao == 2) {
+                    bloco[0] = dadosBin.get(0);
+                    bloco[1] = dadosBin.get(1);
+                    for (int i = 2; i < 8 ; i++) {
+                        bloco[i] = dadosBin.get(i);
+                    }
+                }
             }
-            //TODO -> Validar posições < 3 e maiores que 195
         return bloco;
     }
 
@@ -86,26 +100,21 @@ public class Memoria {
             }
         }
         if (posicao == -1) {
-            System.out.println("NÃO ENCONTREI A POSIÇÃO => "+ endereco);
             return bloco;
         } //vazio
 
             int count = 0;
             bloco[0] = dadosBin.get(posicao);
-            if (posicao <= 193){
+            if (posicao < 193){
                 for (int i = 1; i <= 3 ; i++) {
                     bloco[i] = dadosBin.get(posicao + (1+count));
                     count++;
                 }
-            } else { // >193
-                for (int i = 3; i > 0; i--) {
-                    bloco[i] = dadosBin.get(posicao - (1+count));
-                    count++;
-                }
+            } else { // >=193
+                bloco[1] = dadosBin.get(194);
+                bloco[2] = dadosBin.get(195);
+                bloco[3] = dadosBin.get(196);
             }
-
-
-        //TODO -> Validar posições < 3 e maiores que 195
         return bloco;
     }
 }

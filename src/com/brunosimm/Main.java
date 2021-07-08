@@ -22,35 +22,30 @@ public class Main {
                 "0046", "0048", "004a", "003a", "003c", "0061", "003e", "0040", "0042", "0044", "0046", "0048", "004a",
                 "003a", "003c", "0062", "003e","0040", "0042", "0044", "0046", "0048", "004a", "003a", "003c", "0063",
                 "003e", "0040", "0042", "0044", "0046", "0048", "004a", "004c", "7ffa", "004e", "0050", "7ffc", "0052",
-                "0054", "002e"
+                "0054", "002e", "7fed", "fff1", "fff1", "fff1", "fff1"
         };
 
         Memoria memoria = new Memoria(dados); //enderecos
-        //memoria.show();
+
         CacheL3P3 cacheL3P3 = new CacheL3P3(3,3,9,memoria);
-        CacheL4P2 cacheL4P2 = new CacheL4P2(4,2,9,memoria); // TODO -> REFATORAR PARA 4 LINHAS E 2 PALAVRAS
+        CacheL4P2 cacheL4P2 = new CacheL4P2(4,2,9,memoria);
 
         List<String> memo = memoria.getDadosBin();
-
-        //cacheL4P2.search("0000000001101000");
-        //memoria.getBloco4ByEndereco("0000000001101000");
         memo.forEach(m -> {
             cacheL3P3.search(m);
             cacheL4P2.search(m);
         });
 
-        //cacheL3P3.show();
+        System.out.println("\nCache L3P3");
+        System.out.println("\tPercentual de acertos: "+cacheL3P3.getPercentualAcertos());
+        System.out.println("\tHits: "+cacheL3P3.getHits()+ " Miss: "+cacheL3P3.getMiss());
+        cacheL3P3.show();
+
+        System.out.println("\n\n-----------------------------------------------------------------------------------------");
+        System.out.println("\nCache L4P2");
+        System.out.println("\tPercentual de acertos: "+cacheL4P2.getPercentualAcertos());
+        System.out.println("\tHits: "+cacheL4P2.getHits()+ " Miss: "+cacheL4P2.getMiss());
         cacheL4P2.show();
-
-
-        System.out.println("\n"+ cacheL4P2.getHits());
-        System.out.println(cacheL4P2.getMiss());
-
-        System.out.println("\n"+ cacheL3P3.getHits());
-        System.out.println(cacheL3P3.getMiss());
-        System.out.println("percent 1 => "+ cacheL3P3.getPercentualAcertos());
-        System.out.println("percent 2 => "+ cacheL4P2.getPercentualAcertos());
-
     }
 }
 

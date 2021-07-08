@@ -39,7 +39,7 @@ public class CacheL4P2 {
     }
 
     public void show(){
-        System.out.print(" Linha     Tag       ...Dados");
+        System.out.print("\n Linha     Tag       ...Dados");
         for (String[] linhas: memoriaCache) { //retorna um vetor por interação (linha)
             System.out.println("\n");
             for (String coluna : linhas) {
@@ -60,12 +60,14 @@ public class CacheL4P2 {
 
             if ((memoriaCache[i][2] != null) && tagcache != null && (linhacache.equals(linha)) && (tagcache.equals(tag))){ //hit
                 this.hits++;
+                System.out.println("L4P2 - Endereço: "+endereco+ " -> HIT");
                 return true;
             }
 
         }
         //miss -> não encontrou na cache no for anterior. Setar novos dados e tag
         this.miss++;
+        System.out.println("L4P2 - Endereço: "+endereco+ " -> MISS");
         for (int i = 0; i < memoriaCache.length; i++) { //000000000 1001 11 0
 
             String linhacache = memoriaCache[i][0].substring(5);
