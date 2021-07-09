@@ -1,5 +1,7 @@
 package com.brunosimm;
 
+import com.brunosimm.Memoria;
+
 public class CacheL4P2 {
 
     private int nroBitsTag;

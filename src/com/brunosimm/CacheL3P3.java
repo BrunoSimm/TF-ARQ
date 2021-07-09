@@ -1,7 +1,7 @@
 package com.brunosimm;
 
-import java.util.Arrays;
-import java.util.stream.IntStream;
+import com.brunosimm.Memoria;
+import com.brunosimm.CacheL3P3;
 
 public class CacheL3P3 {
 
@@ -83,10 +83,7 @@ public class CacheL3P3 {
                 memoriaCache[i][1] = tag;
                 String[] bloco = memoria.getBloco8ByEndereco(endereco);
 
-                if (bloco[0] == null) {
-                    System.out.println("\nENDERECO COM PROBLEMA!!! => "+endereco);
-                    System.out.println("\nENDERECO COM PROBLEMA!!! => "+endereco);
-                }
+
                 for (int j = 2; j <= memoriaCache.length+1; j++) {
                     memoriaCache[i][j] = bloco[j-2]; // existem posições onde o dado pode ir?? => precisa pegar o lote da memoria (4)
                 }

@@ -1,6 +1,9 @@
 package com.brunosimm;
 
 import java.util.List;
+import com.brunosimm.Memoria;
+import com.brunosimm.CacheL3P3;
+import com.brunosimm.CacheL4P2;
 
 public class Main {
 
@@ -22,7 +25,7 @@ public class Main {
                 "0046", "0048", "004a", "003a", "003c", "0061", "003e", "0040", "0042", "0044", "0046", "0048", "004a",
                 "003a", "003c", "0062", "003e","0040", "0042", "0044", "0046", "0048", "004a", "003a", "003c", "0063",
                 "003e", "0040", "0042", "0044", "0046", "0048", "004a", "004c", "7ffa", "004e", "0050", "7ffc", "0052",
-                "0054", "002e", "7fed", "fff1", "fff1", "fff1", "fff1"
+                "0054", "002e"
         };
 
         Memoria memoria = new Memoria(dados); //enderecos
